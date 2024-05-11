@@ -1,4 +1,4 @@
-package com.lanlan77.com;
+package com.lanlan77;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
