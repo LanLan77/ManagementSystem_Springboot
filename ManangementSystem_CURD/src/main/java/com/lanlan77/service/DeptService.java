@@ -18,4 +18,25 @@ public interface DeptService {
      * @param id
      */
     void delete(Integer id);
+
+    /**
+     * 新增部门
+     * @param dept
+     */
+    void add(Dept dept);
+
+    /**
+     * 根据id查询部门数据
+     *
+     * @param id
+     * @return
+     */
+    Dept select(Integer id);
+
+    /**
+     * 修改部门
+     * @param dept
+     * @return
+     */
+    void update(Dept dept);
 }

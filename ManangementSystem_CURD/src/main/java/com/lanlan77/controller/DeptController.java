@@ -16,6 +16,7 @@ import java.util.List;
  * 部门管理Controller
  */
 @Slf4j
+@RequestMapping("/depts")
 @RestController
 public class DeptController {
     @Autowired
@@ -29,7 +30,7 @@ public class DeptController {
     //获取日志记录对象
     /*private static Logger log = LoggerFactory.getLogger(DeptController.class);*/
     //@RequestMapping(value = "/depts",method = RequestMethod.GET) //指定请求方式为get
-    @GetMapping ("depts")
+    @GetMapping
     public Result list(){
         //用logback记录日志
         log.info("查询全部部门数据");
@@ -43,11 +44,53 @@ public class DeptController {
      * 删除部门
      * @return
      */
-    @DeleteMapping("/depts/{id}")
+    @DeleteMapping("{id}")
     public Result Delete(@PathVariable Integer id ){
         log.info("根据id删除部门:{}",id);
         //调用service删除部门
         deptService.delete(id);
+        return Result.success();
+    }
+
+    /**
+     *新增部门
+     * @return
+     */
+    @PostMapping
+    public Result add(@RequestBody  Dept dept ){
+        log.info("新增部门：{}",dept );
+        //调用service新增部门
+        deptService.add(dept);
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询部门数据
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Result select(@PathVariable Integer id){//记得加这个注解！！@PathVariable表示从url路径中给id赋值
+        //日志记录
+        log.info("根据id查询部门信息");
+        //调用service层功能
+        Dept dept = deptService.select(id);
+        //响应
+        return Result.success(dept);
+    }
+
+    /**
+     * 修改部门
+     * @param dept
+     * @return
+     */
+    @PutMapping
+    public Result update(@RequestBody Dept dept){
+        //日志记录
+        log.info("修改部门信息");
+        //调用service层功能
+        deptService.update(dept);
+        //响应
         return Result.success();
     }
 }
