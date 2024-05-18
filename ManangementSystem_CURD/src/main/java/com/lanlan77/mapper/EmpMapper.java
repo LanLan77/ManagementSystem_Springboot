@@ -8,21 +8,28 @@ import java.util.List;
 
 @Mapper
 public interface EmpMapper {
+//    /**
+//     * 查询总记录数
+//     * @return
+//     */
+//    @Select("select count(*) from emp;")
+//    public long count();
+//
+//
+//    /**
+//     * 分页查询获取列表数据
+//     * @param start
+//     * @param pageSize
+//     * @return
+//     */
+//    @Select("select * from emp limit #{start},#{pageSize };")
+//    public List<Emp> page(Integer start, Integer pageSize);
+
     /**
-     * 查询总记录数
+     * 员工信息查询
      * @return
      */
-    @Select("select count(*) from emp;")
-    public long count();
-
-
-    /**
-     * 分页查询获取列表数据
-     * @param start
-     * @param pageSize
-     * @return
-     */
-    @Select("select * from emp limit #{start},#{pageSize };")
-    public List<Emp> page(Integer start, Integer pageSize);
+    @Select("select * from emp")
+    public List<Emp> list();
 
 }
