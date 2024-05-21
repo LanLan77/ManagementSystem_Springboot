@@ -10,6 +10,7 @@ import com.lanlan77.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class EmpServiceImpl implements EmpService {
@@ -28,15 +29,16 @@ public class EmpServiceImpl implements EmpService {
     }*/
 
     @Override
-    public PageBean page(Integer page, Integer pageSize) {
+    public PageBean page(Integer page, Integer pageSize, String name, Short gender, LocalDate begin, LocalDate end) {
         //1. 设置分页参数
         PageHelper.startPage(page, pageSize);
         //2. 执行查询操作
-        List<Emp> empList = empMapper.list();
+        List<Emp> empList = empMapper.list(name, gender, begin, end);
         //3. 使用 PageInfo 封装分页信息
         PageInfo<Emp> pageInfo = new PageInfo<>(empList);
         //4. 封装 PageBean 对象
         PageBean pageBean = new PageBean(pageInfo.getTotal(), pageInfo.getList());
         return pageBean;
     }
+
 }
