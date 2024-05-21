@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.List;
 @Service
-public class EmpServiceImpl implements EmpService {
+        public class EmpServiceImpl implements EmpService {
     @Autowired
     private EmpMapper empMapper;
     /*@Override
@@ -39,6 +39,11 @@ public class EmpServiceImpl implements EmpService {
         //4. 封装 PageBean 对象
         PageBean pageBean = new PageBean(pageInfo.getTotal(), pageInfo.getList());
         return pageBean;
+    }
+
+    @Override
+    public void delete(List<Integer> ids) {
+        empMapper.delete(ids);
     }
 
 }
