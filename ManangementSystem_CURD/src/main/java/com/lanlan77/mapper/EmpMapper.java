@@ -3,10 +3,12 @@ package com.lanlan77.mapper;
 import com.lanlan77.pojo.Emp;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.mybatis.spring.annotation.MapperScan;
 
+import java.time.LocalDate;
 import java.util.List;
 
-@Mapper
+@MapperScan("com.lanlan77.mapper")
 public interface EmpMapper {
 //    /**
 //     * 查询总记录数
@@ -29,7 +31,7 @@ public interface EmpMapper {
      * 员工信息查询
      * @return
      */
-    @Select("select * from emp")
-    public List<Emp> list();
+    //@Select("select * from emp")
+    public List<Emp> list(String name, Short gender, LocalDate begin, LocalDate end);
 
 }
